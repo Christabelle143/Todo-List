@@ -1,0 +1,66 @@
+body {
+    background-color: bisque;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: sans-serif;
+  }
+  .todo-list {
+    width: 50%;
+    border: 2px solid #fff;
+    background-color: #fff;
+    box-shadow: 2px 2px 8px rgb(148, 148, 148);
+  }
+  .title{
+    border-bottom: 1px solid rgb(196, 196, 196);
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+
+  }
+  .title p {
+    padding-left: 10px;
+    margin: 1px;
+  }
+  .input-section {
+    height: 35px;
+    width: 100%;
+    border-bottom: 1px solid rgb(196, 196, 196);
+  }
+  .todo-input {
+    width: 90%;
+    height: 90%;
+    border: transparent;
+    padding-left: 10px;
+    font-style: italic;
+  }
+  
+  .lists {
+    border-bottom: 1px solid rgb(196, 196, 196);
+    list-style: none;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .list {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .list p {
+    margin: 1px;
+  }
+  
+  .li-div {
+    display: flex;
+  }
+  
+  .btn {
+    background-color: white;
+    border: transparent;
+    height: 30px;
+    width: 100%;
+  }
