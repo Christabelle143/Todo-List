@@ -2,32 +2,33 @@
 import _ from 'lodash';
 /* eslint-enable */
 import './style.css';
-//Create object with different hardcoded elements
+// Create object with different hardcoded elements
 const todolist = [
-    {
-        index: 1,
-        description: 'Wash the dishes',
-        completed: false,
+  {
+    index: 1,
+    description: 'Wash the dishes',
+    completed: false,
 
-    },
-    {
-        index: 2,
-        description: 'Make my hair',
-        completed: true,
-        
-    },
-    {
-        index: 1,
-        description: 'Complete todo list project',
-        completed: false,
-        
-    },
+  },
+  {
+    index: 2,
+    description: 'Make my hair',
+    completed: true,
+
+  },
+  {
+    index: 1,
+    description: 'Complete todo list project',
+    completed: false,
+
+  },
 ];
-class tasks{
-   constructor(){
-       this.toDoList = [];
-   }
-   add(description, completed) {
+class tasks {
+  constructor() {
+    this.toDoList = [];
+  }
+
+  add(description, completed) {
     this.toDoList = this.toDoList.concat({ index: Date.now(), description, completed });
   }
 
@@ -35,13 +36,13 @@ class tasks{
     this.toDoList = this.toDoList.filter((list) => list.id !== Number(id));
   }
 }
-//Create new tasks in the todolist
+// Create new tasks in the todolist
 
 /* eslint-disable */
 const lists = new tasks();
 /* eslint-enable */
 const todoDiv = document.querySelector('.lists');
-const getTodoList = () =>{
+const getTodoList = () => {
   todolist.forEach((list) => {
     const li = document.createElement('li');
     li.classList.add('list');
@@ -63,7 +64,6 @@ const getTodoList = () =>{
     dots.classList.add('fa-ellipsis-v');
     li.appendChild(dots);
     todoDiv.appendChild(li);
-
   });
 };
 getTodoList();
