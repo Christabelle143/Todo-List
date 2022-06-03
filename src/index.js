@@ -2,7 +2,6 @@
 import _ from 'lodash';
 /* eslint-enable */
 import './style.css';
-//import Icon from './icon.png';
 //Create object with different hardcoded elements
 const todolist = [
     {

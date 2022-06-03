@@ -4,11 +4,11 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    font-family: sans-serif;
+    font-family: 'Roboto, sans-serif';
   }
   .todo-list {
     width: 50%;
-    border: 2px solid #fff;
+    border: 1px solid #fff;
     background-color: #fff;
     box-shadow: 2px 2px 8px rgb(148, 148, 148);
   }
@@ -59,7 +59,7 @@ body {
   }
   
   .btn {
-    background-color: white;
+    background-color: #fff;
     border: transparent;
     height: 30px;
     width: 100%;
