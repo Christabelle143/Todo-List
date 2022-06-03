@@ -22,6 +22,8 @@
 
 - Open your Gitbash or your code editor's terminal and run the command git clone git@github.com:Christabelle143/Todo-List.git
 - Then you can pull the work from github to ur local machine using the git pull command.
+- run npm install to install all dependencies used in the project
+- run npm start to start the application on the browser.
 
 
 

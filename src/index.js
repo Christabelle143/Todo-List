@@ -1,6 +1,3 @@
-/*eslint-disable*/
-import _ from 'lodash';
-/* eslint-enable */
 import './style.css';
 // Create object with different hardcoded elements
 const todolist = [
@@ -8,28 +5,29 @@ const todolist = [
     index: 1,
     description: 'Wash the dishes',
     completed: false,
-
   },
   {
     index: 2,
     description: 'Make my hair',
     completed: true,
-
   },
   {
     index: 1,
     description: 'Complete todo list project',
     completed: false,
-
   },
 ];
-class tasks {
+class Tasks {
   constructor() {
     this.toDoList = [];
   }
 
   add(description, completed) {
-    this.toDoList = this.toDoList.concat({ index: Date.now(), description, completed });
+    this.toDoList = this.toDoList.concat({
+      index: Date.now(),
+      description,
+      completed,
+    });
   }
 
   remove(id) {
@@ -37,10 +35,7 @@ class tasks {
   }
 }
 // Create new tasks in the todolist
-
-/* eslint-disable */
-const lists = new tasks();
-/* eslint-enable */
+const lists = new Tasks();
 const todoDiv = document.querySelector('.lists');
 const getTodoList = () => {
   todolist.forEach((list) => {
@@ -67,3 +62,10 @@ const getTodoList = () => {
   });
 };
 getTodoList();
+// Begining of Add Remove functionality
+const listInput = document.getElementById('todo-input');
+listInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    lists.setTodo();
+  }
+});
