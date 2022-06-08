@@ -68,3 +68,23 @@ body {
   height: 30px;
   width: 100%;
 }
+.draggable {
+  cursor: move;
+}
+
+.line {
+  text-decoration: line-through;
+}
+
+.hidden {
+  display: none;
+}
+
+.fa {
+  cursor: pointer;
+}
+
+input {
+  outline: none;
+  border: none;
+}
