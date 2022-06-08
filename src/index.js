@@ -1,10 +1,11 @@
 import './style.css';
-import {updateStatus} from './status.js';
+import { updateStatus } from './status.js';
 import { list, load } from './data.js';
-import { makeContainer, makeDrageable } from './dragdrop';
+import { makeContainer, makeDrageable } from './dragdrop.js';
 import {
   addActivity, ShowAll, removeCompleteds, saveone, removeone,
 } from './addremoveedit.js';
+
 let todolist = [];
 if (localStorage.getItem('information') === null) {
   localStorage.setItem('information', '[]');
@@ -43,9 +44,9 @@ const getTodoList = () => {
     checkbox.checked = list.completed;
     liDiv.appendChild(checkbox);
     // create description
-    const desc = document.createElement('p');
+    const desc = document.createElement('input');
     desc.innerText = list.description;
-    desc.onchange = (() => { saveone(desc); });
+    desc.onchange = (() => { saveone(desc); });//edit file
     liDiv.appendChild(desc);
     checkbox.addEventListener('change', function () {
       if (this.checked) {
@@ -61,61 +62,57 @@ const getTodoList = () => {
     dots.classList.add('fa-ellipsis-v');
     li.appendChild(dots);
     todoDiv.appendChild(li);
-        // create trashcan
-        const trash = document.createElement('i');
-         trash.classList.add('fa');
-         trash.id = `trashcan${i}`;
-         trash.classList.add('fa-trash');
-        trash.addEventListener('click', () => {
-          todolist = removeone(trash);
-          ShowAll(todoDiv);
-          window.location.reload();
-        });
-        dots.addEventListener('click', () => {
-          dots.classList.add('hidden');
-          trash.classList.remove('hidden');
-        });
-        trash.classList.add('hidden');
-        li.appendChild(trash);
-        todoDiv.appendChild(li);
-        i += 1;
-      });
-      const cbox = document.querySelectorAll('.checkbox');
-      cbox.forEach((chbox) => {
-        chbox.addEventListener('change', updateStatus);
-        
-      });
-    };
-    const todoInput = document.getElementById('todo-input');
-    todoInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        addActivity(todoInput.value);
-        ShowAll(todoDiv);
-        const get = load();
-        lists.setTodo(get);
-        window.location.reload();
-      }
-    });
-    const clearBtn = document.getElementById('btn');
-    clearBtn.addEventListener('click', () => {
-      removeCompleteds();
-      const get = load();
+    // create trashcan
+    const trash = document.createElement('i');
+    trash.classList.add('fa');
+    trash.id = `trashcan${i}`;
+    trash.classList.add('fa-trash');
+    trash.addEventListener('click', () => {
+      todolist = removeone(trash);
       ShowAll(todoDiv);
-      lists.setTodo(get);
       window.location.reload();
     });
-    window.addEventListener('DOMContentLoaded', () => {
-      if (localStorage.getItem('information')) {
-        todolist = JSON.parse(localStorage.getItem('information'));
-      } else {
-        localStorage.setItem(
-          'information',
-          JSON.stringify(todolist.sort((a, b) => +a.index - +b.index)),
-        );
-      }
-    
-      getTodoList(todolist.sort((a, b) => +a.index - +b.index));
+    dots.addEventListener('click', () => {
+      dots.classList.add('hidden');
+      trash.classList.remove('hidden');
     });
-    
+    trash.classList.add('hidden');
+    li.appendChild(trash);
+    todoDiv.appendChild(li);
+    i += 1;
+  });
+  const cbox = document.querySelectorAll('.checkbox');
+  cbox.forEach((chbox) => {
+    chbox.addEventListener('change', updateStatus);
+  });
+};
+const todoInput = document.getElementById('todo-input');
+todoInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    addActivity(todoInput.value);
+    ShowAll(todoDiv);
+    const get = load();
+    lists.setTodo(get);
+    window.location.reload();
+  }
+});
+const clearBtn = document.getElementById('btn');
+clearBtn.addEventListener('click', () => {
+  removeCompleteds();
+  const get = load();
+  ShowAll(todoDiv);
+  lists.setTodo(get);
+  window.location.reload();
+});
+window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('information')) {
+    todolist = JSON.parse(localStorage.getItem('information'));
+  } else {
+    localStorage.setItem(
+      'information',
+      JSON.stringify(todolist.sort((a, b) => +a.index - +b.index)),
+    );
+  }
 
-
+  getTodoList(todolist.sort((a, b) => +a.index - +b.index));
+});

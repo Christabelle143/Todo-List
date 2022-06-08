@@ -1,4 +1,5 @@
 import { save, load } from './data.js';
+
 const theBigList = document.querySelector('.lists');
 
 export function ShowAll(element) {
@@ -29,7 +30,7 @@ export function addActivity(text) {
   save(actualtodo);
 }
 
-export function eliminateOne(element) {//eliminate one
+export function eliminateOne(element) { // eliminate one
   const { id } = element;
   const actualtodo = load();
   const result = actualtodo.filter((activity) => activity.id === id);
