@@ -4,8 +4,7 @@ import { list, load } from './data.js';
 import { makeContainer, makeDrageable } from './dragdrop';
 import {
   addActivity, ShowAll, removeCompleteds, saveone, removeone,
-} from './addremoveedit';
-// Create object with different hardcoded elements
+} from './addremoveedit.js';
 let todolist = [];
 if (localStorage.getItem('information') === null) {
   localStorage.setItem('information', '[]');
@@ -23,7 +22,6 @@ class Tasks {
     return this.todo;
   }
 }
-// Create new tasks in the todolist
 const lists = new Tasks();
 const todoDiv = document.querySelector('.lists');
 makeContainer(todoDiv);
@@ -33,9 +31,9 @@ const getTodoList = () => {
     const li = document.createElement('li');
     makeDrageable(li);
     li.classList.add('list');
-    li.classList.add('draggable');//tried getting a different value for this that's class name
+    li.classList.add('draggable');
     li.id = i;
-    li.draggable = true;//why true
+    li.draggable = true;
     const liDiv = document.createElement('div');
     liDiv.classList.add('li-div');
     // create checkbox
@@ -47,10 +45,10 @@ const getTodoList = () => {
     // create description
     const desc = document.createElement('p');
     desc.innerText = list.description;
-    desc.onchange = (() => { saveone(desc); });//why not use onedit
+    desc.onchange = (() => { saveone(desc); });
     liDiv.appendChild(desc);
     checkbox.addEventListener('change', function () {
-      if (this.checked) {//try it with list.completed
+      if (this.checked) {
         desc.classList.add('line');
       } else {
         desc.classList.remove('line');
@@ -67,10 +65,10 @@ const getTodoList = () => {
         const trash = document.createElement('i');
          trash.classList.add('fa');
          trash.id = `trashcan${i}`;
-         trash.classList.add('fa-trash');//get its CSS codes
+         trash.classList.add('fa-trash');
         trash.addEventListener('click', () => {
           todolist = removeone(trash);
-          ShowAll(todoDiv);//to display the rest
+          ShowAll(todoDiv);
           window.location.reload();
         });
         dots.addEventListener('click', () => {
@@ -80,32 +78,32 @@ const getTodoList = () => {
         trash.classList.add('hidden');
         li.appendChild(trash);
         todoDiv.appendChild(li);
-        i += 1;// according to the instructions
+        i += 1;
       });
       const cbox = document.querySelectorAll('.checkbox');
       cbox.forEach((chbox) => {
-        chbox.addEventListener('change', updateStatus);// update status when edited
+        chbox.addEventListener('change', updateStatus);
+        
       });
     };
     const todoInput = document.getElementById('todo-input');
     todoInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
-        addActivity(todoInput.value);//Adds the activity when pressed enter
-        ShowAll(todoDiv); // shows all others tasks in the todolist
+        addActivity(todoInput.value);
+        ShowAll(todoDiv);
         const get = load();
         lists.setTodo(get);
         window.location.reload();
       }
     });
-    const clearBtn = document.querySelector('.btn');//check the add remove where we have the id instead.
+    const clearBtn = document.getElementById('btn');
     clearBtn.addEventListener('click', () => {
-      removeCompleteds();//corected this one elimanateCompleteds
-      const get = load();//try sommenting this out i the results inorder to understand better.
-      ShowAll(todoDiv);//anti to showall
+      removeCompleteds();
+      const get = load();
+      ShowAll(todoDiv);
       lists.setTodo(get);
       window.location.reload();
     });
-    
     window.addEventListener('DOMContentLoaded', () => {
       if (localStorage.getItem('information')) {
         todolist = JSON.parse(localStorage.getItem('information'));

@@ -62,7 +62,7 @@ body {
   display: flex;
 }
 
-.btn {
+#btn {
   background-color: #fff;
   border: transparent;
   height: 30px;

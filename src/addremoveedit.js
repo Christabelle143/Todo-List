@@ -53,7 +53,6 @@ export function saveone(element) {
 export function removeone(element) {
   const todolist = load();
   const index = element.parentNode.id;
- // console.log(index);
   todolist.splice(index, 1);
   save(todolist);
   return todolist;
