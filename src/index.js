@@ -1,8 +1,13 @@
 import './style.css';
 import { updateStatus } from './status.js';
 import { load } from './data.js';
+import { makeContainer, makeDrageable } from './dragdrop.js';
 import {
-  addActivity, ShowAll, saveone, removeone,
+  addActivity,
+  ShowAll,
+  removeCompleteds,
+  saveone,
+  removeone,
 } from './addremoveedit.js';
 
 let todolist = [];
@@ -24,12 +29,16 @@ class Tasks {
 }
 const lists = new Tasks();
 const todoDiv = document.querySelector('.lists');
+makeContainer(todoDiv);
 let i = 0;
 const getTodoList = () => {
   todolist.forEach((list) => {
     const li = document.createElement('li');
+    makeDrageable(li);
     li.classList.add('list');
+    li.classList.add('draggable');
     li.id = i;
+    li.draggable = true;
     const liDiv = document.createElement('div');
     liDiv.classList.add('li-div');
     // create checkbox
@@ -44,8 +53,15 @@ const getTodoList = () => {
     desc.value = list.description;
     desc.onchange = () => {
       saveone(desc);
-    }; // edit file
+    };
     liDiv.appendChild(desc);
+    checkbox.addEventListener('change', function check() {
+      if (this.checked) {
+        desc.classList.add('line');
+      } else {
+        desc.classList.remove('line');
+      }
+    });
     li.appendChild(liDiv);
     // create 3 vertical dots
     const dots = document.createElement('i');
@@ -86,6 +102,14 @@ todoInput.addEventListener('keydown', (e) => {
     lists.setTodo(get);
     window.location.reload();
   }
+});
+const clearBtn = document.getElementById('btn');
+clearBtn.addEventListener('click', () => {
+  removeCompleteds();
+  const get = load();
+  ShowAll(todoDiv);
+  lists.setTodo(get);
+  window.location.reload();
 });
 window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('information')) {
