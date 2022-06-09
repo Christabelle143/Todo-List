@@ -10,7 +10,7 @@ export function ShowAll(element) {
 
 export function removeCompleteds() {
   const actualtodo = load();
-  const result = actualtodo.filter((activity) => (activity.completed === false));
+  const result = actualtodo.filter((activity) => activity.completed === false);
   for (let i = 0; i < result.length; i += 1) {
     result[i].index = i;
   }
@@ -30,7 +30,8 @@ export function addActivity(text) {
   save(actualtodo);
 }
 
-export function eliminateOne(element) { // eliminate one
+export function eliminateOne(element) {
+  // eliminate one
   const { id } = element;
   const actualtodo = load();
   const result = actualtodo.filter((activity) => activity.id === id);

@@ -120,7 +120,6 @@ input {
   overflow: hidden;
 }
 
-/* stylelint-disable */
 .circles li {
   background-color: #1b6d69;
   position: absolute;
@@ -128,7 +127,6 @@ input {
   list-style: none;
   width: 20px;
   height: 20px;
-
   animation: animate 25s linear infinite;
   bottom: -150px;
 }
