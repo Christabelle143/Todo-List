@@ -35,4 +35,3 @@ export function load() {
 export function compare(a, b) {
   return a.index - b.index;
 }
-export const list = todov;

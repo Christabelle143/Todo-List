@@ -1,6 +1,6 @@
 import './style.css';
 import { updateStatus } from './status.js';
-import { list, load } from './data.js';
+import { load } from './data.js';
 import { makeContainer, makeDrageable } from './dragdrop.js';
 import {
   addActivity, ShowAll, removeCompleteds, saveone, removeone,
@@ -45,7 +45,8 @@ const getTodoList = () => {
     liDiv.appendChild(checkbox);
     // create description
     const desc = document.createElement('input');
-    desc.innerText = list.description;
+    desc.classList.add('desc');
+    desc.value = list.description;
     desc.onchange = (() => { saveone(desc); });//edit file
     liDiv.appendChild(desc);
     checkbox.addEventListener('change', function () {

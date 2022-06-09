@@ -55,7 +55,12 @@
   justify-content: space-between;
   margin-bottom: 15px;
 }
+
 .list:hover {
+  background-color: #edac1f;
+}
+
+.desc:hover .list{
   background-color: #edac1f;
 }
 
@@ -98,21 +103,6 @@ input {
 /* CSS animation */
 @import url("https://fonts.googleapis.com/css?family=Exo:400,700");
 
-/* body {
-  font-family: "Exo", sans-serif;
-} */
-
-.context {
-  width: 100%;
-  position: absolute;
-  top: 0;
-}
-
-.context h1 {
-  text-align: center;
-  color: #fff;
-  font-size: 50px;
-}
 
 .area {
   background-color: bisque;
@@ -221,7 +211,6 @@ input {
   animation-duration: 11s;
 }
 
-/* stylelint-enable */
 
 @keyframes animate {
   0% {
