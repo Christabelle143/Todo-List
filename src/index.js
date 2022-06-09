@@ -55,7 +55,7 @@ const getTodoList = () => {
       saveone(desc);
     };
     liDiv.appendChild(desc);
-    checkbox.addEventListener('change', function () {
+    checkbox.addEventListener('change', function check() {
       if (this.checked) {
         desc.classList.add('line');
       } else {
