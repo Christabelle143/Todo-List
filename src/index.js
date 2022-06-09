@@ -1,56 +1,50 @@
 import './style.css';
-// Create object with different hardcoded elements
-const todolist = [
-  {
-    index: 1,
-    description: 'Wash the dishes',
-    completed: false,
-  },
-  {
-    index: 2,
-    description: 'Make my hair',
-    completed: true,
-  },
-  {
-    index: 1,
-    description: 'Complete todo list project',
-    completed: false,
-  },
-];
+import { updateStatus } from './status.js';
+import { load } from './data.js';
+import {
+  addActivity, ShowAll, saveone, removeone,
+} from './addremoveedit.js';
+
+let todolist = [];
+if (localStorage.getItem('information') === null) {
+  localStorage.setItem('information', '[]');
+}
 class Tasks {
   constructor() {
-    this.toDoList = [];
+    this.toDoList = null;
   }
 
-  add(description, completed) {
-    this.toDoList = this.toDoList.concat({
-      index: Date.now(),
-      description,
-      completed,
-    });
+  setTodo(todolist) {
+    this.todo = todolist;
   }
 
-  remove(id) {
-    this.toDoList = this.toDoList.filter((list) => list.id !== Number(id));
+  getTodo() {
+    return this.todo;
   }
 }
-// Create new tasks in the todolist
 const lists = new Tasks();
 const todoDiv = document.querySelector('.lists');
+let i = 0;
 const getTodoList = () => {
   todolist.forEach((list) => {
     const li = document.createElement('li');
     li.classList.add('list');
+    li.id = i;
     const liDiv = document.createElement('div');
     liDiv.classList.add('li-div');
     // create checkbox
     const checkbox = document.createElement('input');
+    checkbox.classList.add('checkbox');
     checkbox.type = 'checkbox';
     checkbox.checked = list.completed;
     liDiv.appendChild(checkbox);
     // create description
-    const desc = document.createElement('p');
-    desc.innerText = list.description;
+    const desc = document.createElement('input');
+    desc.classList.add('desc');
+    desc.value = list.description;
+    desc.onchange = () => {
+      saveone(desc);
+    }; // edit file
     liDiv.appendChild(desc);
     li.appendChild(liDiv);
     // create 3 vertical dots
@@ -59,13 +53,49 @@ const getTodoList = () => {
     dots.classList.add('fa-ellipsis-v');
     li.appendChild(dots);
     todoDiv.appendChild(li);
+    // create trashcan
+    const trash = document.createElement('i');
+    trash.classList.add('fa');
+    trash.id = `trashcan${i}`;
+    trash.classList.add('fa-trash');
+    trash.addEventListener('click', () => {
+      todolist = removeone(trash);
+      ShowAll(todoDiv);
+      window.location.reload();
+    });
+    dots.addEventListener('click', () => {
+      dots.classList.add('hidden');
+      trash.classList.remove('hidden');
+    });
+    trash.classList.add('hidden');
+    li.appendChild(trash);
+    todoDiv.appendChild(li);
+    i += 1;
+  });
+  const cbox = document.querySelectorAll('.checkbox');
+  cbox.forEach((chbox) => {
+    chbox.addEventListener('change', updateStatus);
   });
 };
-getTodoList();
-// Begining of Add Remove functionality
-const listInput = document.getElementById('todo-input');
-listInput.addEventListener('keydown', (e) => {
+const todoInput = document.getElementById('todo-input');
+todoInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
-    lists.setTodo();
+    addActivity(todoInput.value);
+    ShowAll(todoDiv);
+    const get = load();
+    lists.setTodo(get);
+    window.location.reload();
   }
+});
+window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('information')) {
+    todolist = JSON.parse(localStorage.getItem('information'));
+  } else {
+    localStorage.setItem(
+      'information',
+      JSON.stringify(todolist.sort((a, b) => +a.index - +b.index)),
+    );
+  }
+
+  getTodoList(todolist.sort((a, b) => +a.index - +b.index));
 });
