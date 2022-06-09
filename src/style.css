@@ -1,12 +1,11 @@
- body {
-  /* background-color: bisque;*/
+body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh; 
+  height: 100vh;
   width: 100%;
-  font-family: 'Roboto', sans-serif;
-} 
+  font-family: "Roboto", sans-serif;
+}
 
 .todo-list {
   width: 50%;
@@ -55,7 +54,12 @@
   justify-content: space-between;
   margin-bottom: 15px;
 }
+
 .list:hover {
+  background-color: #edac1f;
+}
+
+.list:hover .desc {
   background-color: #edac1f;
 }
 
@@ -95,30 +99,13 @@ input {
   border: none;
 }
 
-/* CSS animation */
 @import url("https://fonts.googleapis.com/css?family=Exo:400,700");
 
-/* body {
-  font-family: "Exo", sans-serif;
-} */
-
-.context {
-  width: 100%;
-  position: absolute;
-  top: 0;
-}
-
-.context h1 {
-  text-align: center;
-  color: #fff;
-  font-size: 50px;
-}
-
 .area {
-  background-color: bisque;
+  background: bisque;
   background: linear-gradient(to left, rgb(212, 203, 192), bisque);
-   width: 100%;
-  height: 100vh; 
+  width: 100%;
+  height: 100vh;
   top: 0;
   position: absolute;
   z-index: -1;
@@ -128,12 +115,11 @@ input {
   position: absolute;
   top: 0;
   left: 0;
-   width: 100%;
-  height: 100%; 
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
-/* stylelint-disable */
 .circles li {
   background-color: #1b6d69;
   position: absolute;
@@ -141,7 +127,6 @@ input {
   list-style: none;
   width: 20px;
   height: 20px;
-  
   animation: animate 25s linear infinite;
   bottom: -150px;
 }
@@ -220,8 +205,6 @@ input {
   animation-delay: 0s;
   animation-duration: 11s;
 }
-
-/* stylelint-enable */
 
 @keyframes animate {
   0% {

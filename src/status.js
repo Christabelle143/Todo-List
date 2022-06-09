@@ -8,3 +8,4 @@ export function updateStatus(event) {
   }
   localStorage.setItem('information', JSON.stringify(status));
 }
+export default updateStatus;
