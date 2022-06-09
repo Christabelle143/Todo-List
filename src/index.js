@@ -3,7 +3,11 @@ import { updateStatus } from './status.js';
 import { load } from './data.js';
 import { makeContainer, makeDrageable } from './dragdrop.js';
 import {
-  addActivity, ShowAll, removeCompleteds, saveone, removeone,
+  addActivity,
+  ShowAll,
+  removeCompleteds,
+  saveone,
+  removeone,
 } from './addremoveedit.js';
 
 let todolist = [];
@@ -47,7 +51,9 @@ const getTodoList = () => {
     const desc = document.createElement('input');
     desc.classList.add('desc');
     desc.value = list.description;
-    desc.onchange = (() => { saveone(desc); });//edit file
+    desc.onchange = () => {
+      saveone(desc);
+    };
     liDiv.appendChild(desc);
     checkbox.addEventListener('change', function () {
       if (this.checked) {
