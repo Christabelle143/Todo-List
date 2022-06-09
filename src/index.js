@@ -1,9 +1,11 @@
 import './style.css';
 import { updateStatus } from './status.js';
 import { load } from './data.js';
+import { makeContainer, makeDrageable } from './dragdrop.js';
 import {
   addActivity,
   ShowAll,
+  removeCompleteds,
   saveone,
   removeone,
 } from './addremoveedit.js';
@@ -27,12 +29,16 @@ class Tasks {
 }
 const lists = new Tasks();
 const todoDiv = document.querySelector('.lists');
+makeContainer(todoDiv);
 let i = 0;
 const getTodoList = () => {
   todolist.forEach((list) => {
     const li = document.createElement('li');
+    makeDrageable(li);
     li.classList.add('list');
+    li.classList.add('draggable');
     li.id = i;
+    li.draggable = true;
     const liDiv = document.createElement('div');
     liDiv.classList.add('li-div');
     // create checkbox
@@ -96,6 +102,14 @@ todoInput.addEventListener('keydown', (e) => {
     lists.setTodo(get);
     window.location.reload();
   }
+});
+const clearBtn = document.getElementById('btn');
+clearBtn.addEventListener('click', () => {
+  removeCompleteds();
+  const get = load();
+  ShowAll(todoDiv);
+  lists.setTodo(get);
+  window.location.reload();
 });
 window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('information')) {
