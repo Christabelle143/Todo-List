@@ -5,7 +5,11 @@ body {
   width: 100%;
   font-family: "Roboto", sans-serif;
 }
-body, .title, .list, .li-div{
+
+body,
+.title,
+.list,
+.li-div {
   display: flex;
 }
 
