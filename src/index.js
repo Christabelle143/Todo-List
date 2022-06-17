@@ -75,9 +75,11 @@ const getTodoList = () => {
     trash.id = `trashcan${i}`;
     trash.classList.add('fa-trash');
     trash.addEventListener('click', () => {
-      todolist = removeone(trash);
+      // console.log(i)
+      todolist = removeone(trash.parentNode.id);
+      // todolist = removeone(i);
       ShowAll(todoDiv);
-      window.location.reload();
+      // window.location.reload();
     });
     dots.addEventListener('click', () => {
       dots.classList.add('hidden');

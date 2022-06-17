@@ -52,10 +52,21 @@ export function saveone(element) {
   return todolist;
 }
 
-export function removeone(element) {
+// export function removeone(element) {
+//  console.log(element.parentNode.id)
+//   const todolist = load();
+//   const index = element.parentNode.id;
+//   todolist.splice(index, 1);
+//   save(todolist);
+//   return todolist;
+// }
+
+export function removeone(id) {
   const todolist = load();
-  const index = element.parentNode.id;
-  todolist.splice(index, 1);
+  // const index = id;
+  // console.log(typeof(id));
+  todolist.splice(id, 1);
+  // console.log(todolist.length)
   save(todolist);
   return todolist;
 }
