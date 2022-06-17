@@ -3,10 +3,10 @@ import {
   removeCompleteds,
   saveone,
   removeone,
-} from "../src/addremoveedit.js";
-import { updateStatus } from "../src/status.js";
+} from '../src/addremoveedit.js';
+import { updateStatus } from '../src/status.js';
 
-describe("Tests", () => {
+describe('Tests', () => {
   localStorage.clear();
   document.body.innerHTML = `
     <div class="todo-list">
@@ -29,34 +29,34 @@ describe("Tests", () => {
   </div>
 
     `;
-  test("Add item", () => {
-    addActivity("test1");
-    addActivity("test2");
-    const data = JSON.parse(localStorage.getItem("information"));
+  test('Add item', () => {
+    addActivity('test1');
+    addActivity('test2');
+    const data = JSON.parse(localStorage.getItem('information'));
     expect(data.length).toBe(2);
   });
 
-  test("remove item", () => {
-    removeone("0");
-    const data = JSON.parse(localStorage.getItem("information"));
+  test('remove item', () => {
+    removeone('0');
+    const data = JSON.parse(localStorage.getItem('information'));
     expect(data.length).toBe(1);
   });
 
-  test("Editing the task description", () => {
-    const desc = document.querySelector(".desc");
-    desc.value = "Changed Description";
+  test('Editing the task description', () => {
+    const desc = document.querySelector('.desc');
+    desc.value = 'Changed Description';
     saveone(desc);
-    const data = JSON.parse(localStorage.getItem("information"));
-    expect(data[0].description).toBe("Changed Description");
+    const data = JSON.parse(localStorage.getItem('information'));
+    expect(data[0].description).toBe('Changed Description');
   });
 
-  test("Update completed task", () => {
-    document.querySelector(".checkbox").addEventListener("change", updateStatus);
-    document.querySelector(".checkbox").click();
-    const data = JSON.parse(localStorage.getItem("information"));
+  test('Update completed task', () => {
+    document.querySelector('.checkbox').addEventListener('change', updateStatus);
+    document.querySelector('.checkbox').click();
+    const data = JSON.parse(localStorage.getItem('information'));
     expect(data[0].completed).toBe(true);
   });
-  
+
   test('clear all complete function', () => {
     {
       const data = JSON.parse(localStorage.getItem('information'));
@@ -71,5 +71,4 @@ describe("Tests", () => {
       expect(data.length).toBe(0);
     }
   });
-  
 });
