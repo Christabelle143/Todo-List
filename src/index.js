@@ -41,13 +41,13 @@ const getTodoList = () => {
     li.draggable = true;
     const liDiv = document.createElement('div');
     liDiv.classList.add('li-div');
- 
+
     const checkbox = document.createElement('input');
     checkbox.classList.add('checkbox');
     checkbox.type = 'checkbox';
     checkbox.checked = list.completed;
     liDiv.appendChild(checkbox);
-   
+
     const desc = document.createElement('input');
     desc.classList.add('desc');
     desc.value = list.description;
@@ -63,7 +63,7 @@ const getTodoList = () => {
       }
     });
     li.appendChild(liDiv);
-   
+
     const dots = document.createElement('i');
     dots.classList.add('fa');
     dots.classList.add('fa-ellipsis-v');
@@ -108,7 +108,6 @@ clearBtn.addEventListener('click', () => {
   const get = load();
   ShowAll(todoDiv);
   lists.setTodo(get);
- 
 });
 window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('information')) {
