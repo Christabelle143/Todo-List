@@ -36,5 +36,10 @@ describe('Tests', () => {
     expect(data.length).toBe(2);
   });
 
-
+test('remove item', () => {
+    removeone('0');
+    const data = JSON.parse(localStorage.getItem('information'));
+    expect(data.length).toBe(1);
+  });
+  
 });
