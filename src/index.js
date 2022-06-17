@@ -111,7 +111,7 @@ clearBtn.addEventListener('click', () => {
   const get = load();
   ShowAll(todoDiv);
   lists.setTodo(get);
-  window.location.reload();
+  // window.location.reload();
 });
 window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('information')) {
