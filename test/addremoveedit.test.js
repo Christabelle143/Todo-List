@@ -1,10 +1,7 @@
 import {
   addActivity,
-  removeCompleteds,
-  saveone,
   removeone,
 } from '../src/addremoveedit.js';
-import { updateStatus } from '../src/status.js';
 
 describe('Tests', () => {
   localStorage.clear();
@@ -36,10 +33,9 @@ describe('Tests', () => {
     expect(data.length).toBe(2);
   });
 
-test('remove item', () => {
+  test('remove item', () => {
     removeone('0');
     const data = JSON.parse(localStorage.getItem('information'));
     expect(data.length).toBe(1);
   });
-  
 });
