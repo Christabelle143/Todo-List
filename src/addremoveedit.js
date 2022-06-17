@@ -31,7 +31,6 @@ export function addActivity(text) {
 }
 
 export function eliminateOne(element) {
-  // eliminate one
   const { id } = element;
   const actualtodo = load();
   const result = actualtodo.filter((activity) => activity.id === id);
@@ -52,10 +51,9 @@ export function saveone(element) {
   return todolist;
 }
 
-export function removeone(element) {
+export function removeone(id) {
   const todolist = load();
-  const index = element.parentNode.id;
-  todolist.splice(index, 1);
+  todolist.splice(id, 1);
   save(todolist);
   return todolist;
 }

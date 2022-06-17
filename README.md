@@ -10,6 +10,8 @@
 - HTML
 - CSS
 - Javascript
+- Webpack
+- VS code
 
 ## Live Demo (if available)
 
@@ -24,6 +26,16 @@
 - Then you can pull the work from github to ur local machine using the git pull command.
 - run npm install to install all dependencies used in the project
 - run npm start to start the application on the browser.
+
+## Test unit
+
+- Install jest using the command <code>$ npm install --save-dev jest</code>
+- You can check for more information here <a href="https://jestjs.io/">jest version</a>
+- Add this to package.json :
+  - "scripts": {
+     - "test": "jest"
+  - }
+- run <code>npm test</code>
 
 
 
