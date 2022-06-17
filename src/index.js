@@ -41,13 +41,13 @@ const getTodoList = () => {
     li.draggable = true;
     const liDiv = document.createElement('div');
     liDiv.classList.add('li-div');
-    // create checkbox
+  
     const checkbox = document.createElement('input');
     checkbox.classList.add('checkbox');
     checkbox.type = 'checkbox';
     checkbox.checked = list.completed;
     liDiv.appendChild(checkbox);
-    // create description
+
     const desc = document.createElement('input');
     desc.classList.add('desc');
     desc.value = list.description;
@@ -63,23 +63,20 @@ const getTodoList = () => {
       }
     });
     li.appendChild(liDiv);
-    // create 3 vertical dots
+
     const dots = document.createElement('i');
     dots.classList.add('fa');
     dots.classList.add('fa-ellipsis-v');
     li.appendChild(dots);
     todoDiv.appendChild(li);
-    // create trashcan
+
     const trash = document.createElement('i');
     trash.classList.add('fa');
     trash.id = `trashcan${i}`;
     trash.classList.add('fa-trash');
     trash.addEventListener('click', () => {
-      // console.log(i)
       todolist = removeone(trash.parentNode.id);
-      // todolist = removeone(i);
       ShowAll(todoDiv);
-      // window.location.reload();
     });
     dots.addEventListener('click', () => {
       dots.classList.add('hidden');
@@ -111,7 +108,6 @@ clearBtn.addEventListener('click', () => {
   const get = load();
   ShowAll(todoDiv);
   lists.setTodo(get);
-  // window.location.reload();
 });
 window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('information')) {
