@@ -57,4 +57,19 @@ describe("Tests", () => {
     expect(data[0].completed).toBe(true);
   });
   
+  test('clear all complete function', () => {
+    {
+      const data = JSON.parse(localStorage.getItem('information'));
+      expect(data.length).toBe(1);
+    }
+    document
+      .getElementById('btn')
+      .addEventListener('click', () => removeCompleteds());
+    document.getElementById('btn').click();
+    {
+      const data = JSON.parse(localStorage.getItem('information'));
+      expect(data.length).toBe(0);
+    }
+  });
+  
 });
