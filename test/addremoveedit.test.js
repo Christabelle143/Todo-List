@@ -1,7 +1,10 @@
 import {
   addActivity,
+  removeCompleteds,
+  saveone,
   removeone,
 } from '../src/addremoveedit.js';
+import { updateStatus } from '../src/status.js';
 
 describe('Tests', () => {
   localStorage.clear();
@@ -37,5 +40,35 @@ describe('Tests', () => {
     removeone('0');
     const data = JSON.parse(localStorage.getItem('information'));
     expect(data.length).toBe(1);
+  });
+
+  test('Editing the task description', () => {
+    const desc = document.querySelector('.desc');
+    desc.value = 'Changed Description';
+    saveone(desc);
+    const data = JSON.parse(localStorage.getItem('information'));
+    expect(data[0].description).toBe('Changed Description');
+  });
+
+  test('Update completed task', () => {
+    document.querySelector('.checkbox').addEventListener('change', updateStatus);
+    document.querySelector('.checkbox').click();
+    const data = JSON.parse(localStorage.getItem('information'));
+    expect(data[0].completed).toBe(true);
+  });
+
+  test('clear all complete function', () => {
+    {
+      const data = JSON.parse(localStorage.getItem('information'));
+      expect(data.length).toBe(1);
+    }
+    document
+      .getElementById('btn')
+      .addEventListener('click', () => removeCompleteds());
+    document.getElementById('btn').click();
+    {
+      const data = JSON.parse(localStorage.getItem('information'));
+      expect(data.length).toBe(0);
+    }
   });
 });
