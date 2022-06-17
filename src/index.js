@@ -41,7 +41,7 @@ const getTodoList = () => {
     li.draggable = true;
     const liDiv = document.createElement('div');
     liDiv.classList.add('li-div');
-  
+
     const checkbox = document.createElement('input');
     checkbox.classList.add('checkbox');
     checkbox.type = 'checkbox';

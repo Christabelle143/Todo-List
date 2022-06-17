@@ -51,8 +51,6 @@ export function saveone(element) {
   return todolist;
 }
 
-
-
 export function removeone(id) {
   const todolist = load();
   todolist.splice(id, 1);
