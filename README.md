@@ -4,6 +4,9 @@
 
 > This is a Microverse project that entails a to-do-list.
 
+# Screenshot
+
+![screenshot](Todopic.PNG)
 
 ## Built With
 
@@ -13,7 +16,7 @@
 - Webpack
 - VS code
 
-## Live Demo (if available)
+## Live Demo 
 
 [Live Demo Link](https://christabelle143.github.io/Todo-List/)
 
